@@ -1,0 +1,48 @@
+#Git Config 정보 연동을 위해 사용
+server:
+  port: 8000
+    
+eureka:
+  client:
+    fetch-registry: true # 유레카 클라이언트 활성화
+    register-with-eureka: true # 유레카 클라이언트 활성화
+    service-url:
+      defaultZone: http://localhost:8761/eureka # 유레카 클라이언트로 등록           
+
+spring:
+  application:
+    name : xgate
+ 
+  profiles :
+    active: dev
+
+#config 서버를 직접연결시 아래 설정 사용
+
+
+
+#      discovery:
+#        locator:
+#          enabled : true
+
+  config:
+    import: optional:configserver:http://localhost:8888
+#    bootstrap:
+#      enabled: true
+#  cloud:  
+#    config:
+#      discovery: #config 서버를 Eureka에서 Discovery 할경우 
+#        enabled: true
+#        service-id: xconfig 
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+  endpoint:
+    gateway:
+      enabled: true         
+       
